@@ -25,5 +25,9 @@ public class Program
         // ---> update item available
         // ---> return any change if necessary
 
+
+        var inputService = new ValidateInputService();
+
+        inputService.ReturnChangeInCoins(3.50d); // this is to test the method
     }
 }

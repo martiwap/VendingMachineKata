@@ -86,6 +86,26 @@ namespace VendingMachineKata.Services
 
             return true;
         }
+
+
+        public Dictionary<string, int> ReturnChangeInCoins(double balance)
+        {
+            var result = new Dictionary<string, int>();
+
+            // divide the balance per each coin available from the biggest
+            foreach (var coin in this.ValidCoins.OrderByDescending(x => x.Value))
+            {
+                var numbOfCoins = Math.Floor(balance / coin.Value); // which coins
+                var intOfCoin = Convert.ToInt32((double)numbOfCoins); // number of coins
+
+                result.Add(coin.Key, intOfCoin);
+
+                // update balance
+                balance = balance - (coin.Value * intOfCoin);
+            }
+
+            return result;
+        }
     }
 
     public interface IValidateInputService
